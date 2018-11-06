@@ -51,9 +51,9 @@
 		<div class="panel-heading text-center">
 			<h1 onmouseover="responsiveVoice.speak('Educational Attainment in the United States');" onmouseleave="responsiveVoice.cancel();">Educational Attainment in the United States</h1>
 		</div>
-		<div class="panel-body text-center">
+		<div class="panel-body">
 			<h2 onmouseover="responsiveVoice.speak('Nation-Wide Education Level of Population in Schooling');" onmouseleave="responsiveVoice.cancel();">Nation-Wide Education Level of Population in Schooling</h2>
-			<div class="helen_container">
+			<div class="helen_container" id="hc1">
 				<svg id="pie-chart" width="960" height="450"></svg>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
     <a name="regional"></a>
 	<div class="panel panel-success" style="margin-top: 60px;">
 		<div class="panel-heading text-center">
-			<h1 onmouseover="responsiveVoice.speak('Educational Attainment: Region-level Breakdown of University Students');" onmouseleave="responsiveVoice.cancel();">Educational Attainment: Region-level Breakdown of University Students</h2>
+			<h1 onmouseover="responsiveVoice.speak('Educational Attainment: Region-level Breakdown of University Students');" onmouseleave="responsiveVoice.cancel();">Educational Attainment: Region-level Breakdown of University Students</h1>
 		</div>
 		<div class="panel-body">
 			<form id="tree-form">
@@ -77,7 +77,7 @@
 					<label for="mode4" onmouseover="responsiveVoice.speak('Females in College (18-24yrs) (in %)');" onmouseleave="responsiveVoice.cancel();">Females in College (18-24yrs) (in %)</label>
 				</div>
 			</form>
-			<div class="helen_container">
+			<div class="helen_container" id="hc2">
 			  <svg id="chart"></svg>
 			</div>
 		</div>
@@ -86,7 +86,7 @@
 	<a name="state"></a>
 	<div class="panel panel-danger" style="margin-top: 60px;">
 		<div class="panel-heading text-center">
-			<h1 onmouseover="responsiveVoice.speak('Education Level of Population in Schooling: State-level Breakdown');" onmouseleave="responsiveVoice.cancel();">Education Level of Population in Schooling: State-level Breakdown</h2>
+			<h1 onmouseover="responsiveVoice.speak('Education Level of Population in Schooling: State-level Breakdown');" onmouseleave="responsiveVoice.cancel();">Education Level of Population in Schooling: State-level Breakdown</h1>
 		</div>
 		
 		<div class="panel-body">
@@ -98,7 +98,7 @@
 					<label for="radio2" onmouseover="responsiveVoice.speak('Students (in number of people)');" onmouseleave="responsiveVoice.cancel();">Students (in number of people)</label>
 				</div>
 			</form>
-			<div class="helen_container">
+			<div class="helen_container" id="hc3">
 				<svg id="stacked-bar-chart"></svg>
 			</div>
 		</div>
@@ -117,6 +117,7 @@
           width = parseInt(svg.style("width")),
           height = parseInt(svg.style("height")),
           aspect = width / height;
+	  console.log("Called for "+container.attr("id"));
       // add viewBox and preserveAspectRatio properties,
       // and call resize so that svg resizes on inital page load
       svg.attr("viewBox", "0 0 " + width + " " + height)
@@ -141,7 +142,7 @@
 <script src="assets/scripts/script_3.js"></script>
 
 <audio>
-	<source src="click.mp3"></source>
+	<source src="click.mp3">
 </audio>
 
 <div id="sounddiv"><bgsound id="sound"></div>

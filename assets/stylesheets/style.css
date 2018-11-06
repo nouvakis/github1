@@ -143,17 +143,40 @@ polyline{
 /* In biology we generally italicise species names. */
 
 /* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 1281px) {
-  	.labelName {
-	    font-size: 0.9em;
+@media (min-width: 320px) and (max-width: 480px) {
+	.labelName {
+	    font-size: 2.0em;
 	    font-style: italic;
-	}
+	}  
 }
-
+@media (min-width: 481px) and (max-width: 640px) {
+	.labelName {
+	    font-size: 1.7em;
+	    font-style: italic;
+	}  
+}
+@media (min-width: 641px) and (max-width: 800px) {
+	.labelName {
+	    font-size: 1.5em;
+	    font-style: italic;
+	}  
+}
+@media (min-width: 801px) and (max-width: 960px) {
+	.labelName {
+	    font-size: 1.3em;
+	    font-style: italic;
+	}  
+}
+@media (min-width: 961px) and (max-width: 1024px) {
+	.labelName {
+	    font-size: 1.1em;
+	    font-style: italic;
+	}  
+}
 /* 
   ##Device = Laptops, Desktops
   ##Screen = B/w 1025px to 1280px
@@ -166,16 +189,17 @@ polyline{
 	} 
 }
 /* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
 */
 
-@media (min-width: 320px) and (max-width: 480px) {
-	.labelName {
-	    font-size: 1.5em;
+@media (min-width: 1281px) {
+  	.labelName {
+	    font-size: 0.9em;
 	    font-style: italic;
-	}  
+	}
 }
+
 
 #pie-chart {
     display: block;

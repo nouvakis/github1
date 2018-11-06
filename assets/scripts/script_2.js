@@ -1,9 +1,8 @@
 var el_id = 'chart';
 var treeSumSortType = "number";
 
-var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-    margin = {top: 30, right: 0, bottom: 20, left: 0},
-    width = 800 - margin.left - margin.right, // same as script3
+var margin = {top: 30, right: 0, bottom: 20, left: 0},
+    width = 800 - margin.left - margin.right, 
     height = 360 - margin.top - margin.bottom,
     formatNumber = d3.format(","),
     transitioning;
@@ -251,7 +250,7 @@ d3.json("assets/data/us.json", function(data) {
     function name(d) {
         return breadcrumbs(d) +
             (d.parent
-            ? " -  Click To Zoom Out"
+            ? " - Click To Zoom Out"
             : " - Click a Region to Inspect States");
     }
 

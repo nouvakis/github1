@@ -348,6 +348,9 @@ rect.parent,
 	padding:0px;
 	font-size:12px !important;
 }
+.textdiv .value {
+	font-weight: bold;
+}
 
 .extra {
 	text-align: center;

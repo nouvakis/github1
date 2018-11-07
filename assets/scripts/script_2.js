@@ -175,6 +175,7 @@ d3.json("assets/data/us.json", function(data) {
         return g;
     }
 	
+	// ** fixed bug - moved out of the display function so it is called ONLY ONCE (original source creating many listeners every time you press a button)
 	document.forms["tree-form"].addEventListener("change", function(evt) {
 			treeSumSortType = this.elements["treeSum"].value;
 			treemap(root
@@ -206,7 +207,7 @@ d3.json("assets/data/us.json", function(data) {
 				}
 			})
 		);
-		svg.selectAll(".depth").remove();	// added - delete old depth nodes !!!
+		svg.selectAll(".depth").remove();	// ** fixed bug - delete old depth nodes !!!
 		display(root);
 		return false;
 	});

@@ -57,8 +57,9 @@ label{
   padding: 4px 11px;
   font-family: "Arial";
   font-size: 16px;
-  cursor: auto;
-  border-style: dotted;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .radio-toolbar input[type="radio"]:checked+label {

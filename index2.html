@@ -47,12 +47,12 @@
 	
 <div class="container-fluid">
     <a name="national"></a>
-	<div class="panel panel-info" style="margin-top: 60px;">
-		<div class="panel-heading text-center">
-			<h1 onmouseover="responsiveVoice.speak('Educational Attainment in the United States');" onmouseleave="responsiveVoice.cancel();">Educational Attainment in the United States</h1>
+	<div class="panel panel-info text-center" style="margin-top: 60px;">
+		<div class="panel-heading">
+			<h1 class="speak">Educational Attainment in the United States</h1>
 		</div>
 		<div class="panel-body">
-			<h2 onmouseover="responsiveVoice.speak('Nation-Wide Education Level of Population in Schooling');" onmouseleave="responsiveVoice.cancel();">Nation-Wide Education Level of Population in Schooling</h2>
+			<h2 class="speak">Nation-Wide Education Level of Population in Schooling</h2>
 			<div class="helen_container" id="hc1">
 				<svg id="pie-chart" width="960" height="450"></svg>
 			</div>
@@ -62,19 +62,19 @@
     <a name="regional"></a>
 	<div class="panel panel-success" style="margin-top: 60px;">
 		<div class="panel-heading text-center">
-			<h1 onmouseover="responsiveVoice.speak('Educational Attainment: Region-level Breakdown of University Students');" onmouseleave="responsiveVoice.cancel();">Educational Attainment: Region-level Breakdown of University Students</h1>
+			<h1 class="speak">Educational Attainment: Region-level Breakdown of University Students</h1>
 		</div>
 		<div class="panel-body">
 			<form id="tree-form">
 				<div class="radio-toolbar">
 					<input type="radio" id="mode1" name="treeSum" value="number" checked>
-					<label for="mode1" onmouseover="responsiveVoice.speak('Pursuing a Masters degree (in # of students)');" onmouseleave="responsiveVoice.cancel();">Pursuing a Masters degree (in # of students)</label>
+					<label for="mode1" class="speak">Pursuing a Masters degree (in # of students)</label>
 					<input type="radio" id="mode2" name="treeSum" value="percent">
-					<label for="mode2" onmouseover="responsiveVoice.speak('Pursuing a Masters degree (in %)');" onmouseleave="responsiveVoice.cancel();">Pursuing a Masters degree (in %)</label>
+					<label for="mode2" class="speak">Pursuing a Masters degree (in %)</label>
 					<input type="radio" id="mode3" name="treeSum" value="male">
-					<label for="mode3" onmouseover="responsiveVoice.speak('Males in College (18-24yrs)(in %)');" onmouseleave="responsiveVoice.cancel();">Males in College (18-24yrs)(in %)</label>
+					<label for="mode3" class="speak">Males in College (18-24yrs)(in %)</label>
 					<input type="radio" id="mode4" name="treeSum" value="femal">
-					<label for="mode4" onmouseover="responsiveVoice.speak('Females in College (18-24yrs) (in %)');" onmouseleave="responsiveVoice.cancel();">Females in College (18-24yrs) (in %)</label>
+					<label for="mode4" class="speak">Females in College (18-24yrs) (in %)</label>
 				</div>
 			</form>
 			<div class="helen_container" id="hc2">
@@ -86,16 +86,16 @@
 	<a name="state"></a>
 	<div class="panel panel-danger" style="margin-top: 60px;">
 		<div class="panel-heading text-center">
-			<h1 onmouseover="responsiveVoice.speak('Education Level of Population in Schooling: State-level Breakdown');" onmouseleave="responsiveVoice.cancel();">Education Level of Population in Schooling: State-level Breakdown</h1>
+			<h1 class="speak">Education Level of Population in Schooling: State-level Breakdown</h1>
 		</div>
 		
 		<div class="panel-body">
 			<form id="stack-form">
 				<div class="radio-toolbar">
 					<input type="radio" id="radio1" name="mode" value="bypercent" checked>
-					<label for="radio1" onmouseover="responsiveVoice.speak('Students (in %)');" onmouseleave="responsiveVoice.cancel();">Students (in %)</label>
+					<label for="radio1" class="speak">Students (in %)</label>
 					<input type="radio" id="radio2" name="mode" value="bycount">
-					<label for="radio2" onmouseover="responsiveVoice.speak('Students (in number of people)');" onmouseleave="responsiveVoice.cancel();">Students (in number of people)</label>
+					<label for="radio2" class="speak">Students (in number of people)</label>
 				</div>
 			</form>
 			<div class="helen_container" id="hc3">
@@ -117,7 +117,6 @@
           width = parseInt(svg.style("width")),
           height = parseInt(svg.style("height")),
           aspect = width / height;
-	  console.log("Called for "+container.attr("id"));
       // add viewBox and preserveAspectRatio properties,
       // and call resize so that svg resizes on inital page load
       svg.attr("viewBox", "0 0 " + width + " " + height)
@@ -130,11 +129,24 @@
       d3.select(window).on("resize." + container.attr("id"), resize);
       // get width of container and resize svg to fit it
       function resize() {
-          var targetWidth = parseInt(container.style("width"));
+          //var targetWidth = parseInt(container.style("width"));
+		  // remove width and height (we already have preserveAspectRatio)
           svg.attr("width", null);//targetWidth);
           svg.attr("height", null);//Math.round(targetWidth / aspect));
       }
     }
+	
+	$('.speak').mouseenter(function() 
+	{ // Attach this function to all mouseenter events for 'speak' class
+	  responsiveVoice.cancel(); // Cancel anything else that may currently be speaking
+	  responsiveVoice.speak($(this).text()); // Speak the text contents of all nodes within the current 'speak' class
+	});
+	
+	$('.speak').mouseleave(function()
+	{ // Attach this function to all mouseleave events for 'speak' class
+	  responsiveVoice.cancel(); // Cancel anything else that may currently be speaking
+	});
+
 </script>
 
 <script src="assets/scripts/script_1.js"></script>

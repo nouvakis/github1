@@ -1,3 +1,6 @@
+/*****************************************************************************************/
+/* original code from https://gist.github.com/guglielmo/16d880a6615da7f502116220cb551498 */
+/*****************************************************************************************/
 var el_id = 'chart';
 var treeSumSortType = "number";
 
@@ -47,6 +50,8 @@ var grandparent = svg.append("g")
 
 d3.json("assets/data/us.json", function(data) {
     var root = d3.hierarchy(data);
+	var last_trans = root;
+	
 
     treemap(root
         .sum(function (d) {
@@ -84,12 +89,12 @@ d3.json("assets/data/us.json", function(data) {
             .select("rect")
             .attr("fill", function () { return '#f7af72' });
         var g1 = svg.insert("g", ".grandparent")
-            .datum(d)
-            .attr("class", "depth");
+				    .datum(d)
+				    .attr("class", "depth");
         var g = g1.selectAll("g")
-            .data(d.children)
-            .enter().
-            append("g");
+				  .data(d.children)
+				  .enter()
+				  .append("g");
 			
         // add class and click handler to all g's with children
         g.filter(function (d) { return d.children; })
@@ -126,6 +131,7 @@ d3.json("assets/data/us.json", function(data) {
 			
         function transition(d) {
             if (transitioning || !d) return;
+			last_trans = d;
             transitioning = true;
 			
             var g2 = display(d),
@@ -208,7 +214,7 @@ d3.json("assets/data/us.json", function(data) {
 			})
 		);
 		svg.selectAll(".depth").remove();	// ** fixed bug - delete old depth nodes !!!
-		display(root);
+		display(last_trans);	// ** fixed - draw last selected data (root or children) instead of always root !!!
 		return false;
 	});
 

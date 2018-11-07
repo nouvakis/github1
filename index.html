@@ -69,7 +69,44 @@
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+	function responsivefy(svg) {
+      // get container + svg aspect ratio
+      var container = d3.select(svg.node().parentNode),
+          width = parseInt(svg.style("width")),
+          height = parseInt(svg.style("height")),
+          aspect = width / height;
+      // add viewBox and preserveAspectRatio properties,
+      // and call resize so that svg resizes on inital page load
+      svg.attr("viewBox", "0 0 " + width + " " + height)
+         .attr("preserveAspectRatio", "xMinYMid")
+         .call(resize);
+      // to register multiple listeners for same event type,
+      // you need to add namespace, i.e., 'click.foo'
+      // necessary if you call invoke this function for multiple svgs
+      // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+      d3.select(window).on("resize." + container.attr("id"), resize);
+      // get width of container and resize svg to fit it
+      function resize() {
+          //var targetWidth = parseInt(container.style("width"));
+		  // remove width and height (we already have preserveAspectRatio)
+          svg.attr("width", null);//targetWidth);
+          svg.attr("height", null);//Math.round(targetWidth / aspect));
+      }
+    }
+	
+	$('.speak').mouseenter(function() 
+	{ // Attach this function to all mouseenter events for 'speak' class
+	  responsiveVoice.cancel(); // Cancel anything else that may currently be speaking
+	  responsiveVoice.speak($(this).text()); // Speak the text contents of all nodes within the current 'speak' class
+	});
+	
+	$('.speak').mouseleave(function()
+	{ // Attach this function to all mouseleave events for 'speak' class
+	  responsiveVoice.cancel(); // Cancel anything else that may currently be speaking
+	});
 
+</script>
 <script src="assets/scripts/script_1.js"></script>
 <script src="assets/scripts/script_2.js"></script>
 <script src="assets/scripts/script_3.js"></script>

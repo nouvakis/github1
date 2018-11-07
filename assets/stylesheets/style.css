@@ -361,3 +361,8 @@ rect.parent,
 	font-size:8px !important;
 	color: #0FA3B1;
 }
+
+/* custom checkbox */
+.mycheck {
+  cursor: pointer;
+}
